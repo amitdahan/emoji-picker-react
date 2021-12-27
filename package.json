@@ -6,12 +6,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "scripts": {
-    "storybook": "start-storybook -p 6006",
-    "build": "webpack --config ./webpack.config.js",
-    "build-storybook": "build-storybook",
-    "lint": "eslint ."
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ealush/emoji-picker-react.git"
