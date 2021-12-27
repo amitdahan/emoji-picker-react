@@ -1,11 +1,14 @@
-name: Node.js Package
+name: Validations
 
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - master
+  pull_request:
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,19 +19,27 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn build
         working-directory: packages/emoji-picker-react
-
-  publish-npm:
-    needs: build
+  test:
+    name: Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 12
-          registry-url: https://registry.npmjs.org/
           cache: 'yarn'
       - run: yarn install --frozen-lockfile
-      - run: npm publish
+      - run: yarn test
         working-directory: packages/emoji-picker-react
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 12
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - run: yarn lint
+        working-directory: packages/emoji-picker-react
