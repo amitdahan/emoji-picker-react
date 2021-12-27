@@ -10,6 +10,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
+    'plugin:prettier/recommended',
   ],
   parserOptions: {
     ecmaVersion: 2018,
@@ -34,4 +35,9 @@ module.exports = {
     'import/newline-after-import': 2,
   },
   ignorePatterns: ['node_modules', 'dist'],
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
 };
