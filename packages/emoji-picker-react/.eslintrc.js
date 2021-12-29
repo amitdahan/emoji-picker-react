@@ -10,12 +10,11 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
+    'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-  },
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint'],
   globals: {
     DEFAULT_EMOJI_URL: true,
   },
@@ -33,11 +32,17 @@ module.exports = {
     'import/no-useless-path-segments': 2,
     'import/order': 1,
     'import/newline-after-import': 2,
+    'react/prop-types': 0,
   },
   ignorePatterns: ['node_modules', 'dist'],
   settings: {
     react: {
       version: 'detect',
+    },
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
     },
   },
 };

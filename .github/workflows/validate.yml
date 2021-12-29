@@ -19,6 +19,18 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn build
         working-directory: packages/emoji-picker-react
+  type_check:
+    name: Typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 12
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - run: yarn type-check
+        working-directory: packages/emoji-picker-react
   test:
     name: Test
     runs-on: ubuntu-latest
