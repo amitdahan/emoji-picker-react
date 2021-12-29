@@ -1,5 +1,4 @@
-import React, { useRef, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useRef, useEffect, FC } from 'react';
 import { GROUP_NAMES_ENGLISH } from './lib/constants';
 import clickHandler from './lib/clickHandler';
 import { getRecentlyUsed } from './lib/recentlyUsed';
@@ -17,10 +16,15 @@ import CategoriesNav from './components/CategoriesNav';
 import EmojiList from './components/EmojiList';
 import Search from './components/Search';
 import RecentlyUsed from './components/RecentlyUsed';
+import { ConfigProps } from './lib/propTypes';
 import './style.css';
-import { configPropTypes } from './lib/propTypes';
 
-const EmojiPicker = ({
+export interface EmojiPickerProps extends ConfigProps {
+  onEmojiClick: (a: never) => never;
+  pickerStyle: Record<string, string>;
+}
+
+const EmojiPicker: FC<EmojiPickerProps> = ({
   emojiUrl = DEFAULT_EMOJI_URL,
   onEmojiClick,
   preload = false,
@@ -78,7 +82,11 @@ const EmojiPicker = ({
   );
 };
 
-function Aside({ children, pickerStyle }) {
+export interface AsideProps {
+  pickerStyle: Record<string, string>;
+}
+
+const Aside: FC<AsideProps> = ({ children, pickerStyle }) => {
   const closeVariations = useCloseVariationMenu();
   return (
     <aside
@@ -90,7 +98,7 @@ function Aside({ children, pickerStyle }) {
       {children}
     </aside>
   );
-}
+};
 
 export {
   SKIN_TONE_NEUTRAL,
@@ -102,14 +110,3 @@ export {
 };
 
 export default EmojiPicker;
-
-Aside.propTypes = {
-  children: PropTypes.node,
-  pickerStyle: PropTypes.object,
-};
-
-EmojiPicker.propTypes = {
-  onEmojiClick: PropTypes.func,
-  pickerStyle: PropTypes.objectOf(PropTypes.string),
-  ...configPropTypes,
-};
