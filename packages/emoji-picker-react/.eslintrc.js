@@ -10,12 +10,11 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
+    'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-  },
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint'],
   globals: {
     DEFAULT_EMOJI_URL: true,
   },
