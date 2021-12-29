@@ -32,11 +32,17 @@ module.exports = {
     'import/no-useless-path-segments': 2,
     'import/order': 1,
     'import/newline-after-import': 2,
+    'react/prop-types': 0,
   },
   ignorePatterns: ['node_modules', 'dist'],
   settings: {
     react: {
       version: 'detect',
+    },
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
     },
   },
 };
